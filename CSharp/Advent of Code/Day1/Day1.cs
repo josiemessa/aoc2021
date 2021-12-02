@@ -1,24 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using static System.Int32;
 
-namespace Day_1
+// HERE LIES MADNESS, YOU HAVE BEEN WARNED
+namespace Aoc21
 {
-    class Program
+    public class Day1
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Part 1: " + Part1(@"C:\dev\src\github.com\josiemessa\aoc2021\Inputs\Day1"));
-            Console.WriteLine("Part 2: " + Part2(@"C:\dev\src\github.com\josiemessa\aoc2021\Inputs\Day1"));
-        }
-
-        static int Part1(string path)
+        public static int Part1(string path)
         {
             var prev = 0;
             var increaseCount = 0;
-            foreach (var current in ReadIntLines(path))
+            foreach (var current in Utils.ReadIntLines(path))
             {
                 if (prev != 0 && current - prev > 0)
                 {
@@ -31,7 +24,7 @@ namespace Day_1
             return increaseCount;
         }
 
-        static int Part2(string path)
+        public static int Part2(string path)
         {
             var IntervalA = new Interval(0);
             var IntervalB = new Interval(-1);
@@ -45,7 +38,7 @@ namespace Day_1
                 {"B", 0},
                 {"C", 0}
             };
-            foreach (var line in ReadIntLines(path))
+            foreach (var line in Utils.ReadIntLines(path))
             {
                 counter++;
                 // populate windows
@@ -70,6 +63,7 @@ namespace Day_1
                         {
                             increaseCount++;
                         }
+
                         break;
                     case 1:
                         // interval C has just filled, so let's compare it to interval B
@@ -91,10 +85,12 @@ namespace Day_1
                         {
                             break;
                         }
+
                         if (sumA > sumC)
                         {
                             increaseCount++;
                         }
+
                         break;
                 }
 
@@ -102,15 +98,6 @@ namespace Day_1
             }
 
             return increaseCount;
-        }
-
-        static IEnumerable<int> ReadIntLines(string path)
-        {
-            foreach (var line in File.ReadLines(path))
-            {
-                TryParse(line, out var lineInt);
-                yield return lineInt;
-            }
         }
     }
 
