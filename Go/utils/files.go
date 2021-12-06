@@ -10,13 +10,17 @@ import (
 )
 
 func SliceAtoi(input []string) []int {
-	result := make([]int, len(input))
+	var result []int
 	for i, s := range input {
+		s = strings.TrimSpace(s)
+		if s == "" {
+			continue
+		}
 		x, err := strconv.Atoi(s)
 		if err != nil {
 			log.Fatalf("Could not parse line %d: %q", i, s)
 		}
-		result[i] = x
+		result = append(result, x)
 	}
 	return result
 }
