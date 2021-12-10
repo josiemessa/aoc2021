@@ -16,3 +16,8 @@ func TestPart1(t *testing.T) {
 	lines := ParseInput(strings.Split(input, "\n"))
 	require.Equal(t, 15, Part1(lines))
 }
+
+func TestPart2(t *testing.T) {
+	lines := ParseInput(strings.Split(input, "\n"))
+	require.Equal(t, 1134, Part2(lines))
+}
