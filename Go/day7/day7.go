@@ -25,7 +25,7 @@ func main() {
 		line = strings.TrimSpace(scanner.Text())
 	}
 
-	fmt.Println("Part 1: ", Part1(line))
+	//fmt.Println("Part 1: ", Part1(line))
 	fmt.Println("Part 2: ", Part2(line))
 }
 
@@ -59,16 +59,16 @@ func Part2(line string) int {
 
 	// calculate the mean
 	var crabs []int
-	var cumulative float64
+	var cumulative int
 	for _, s := range input {
 		i, err := strconv.Atoi(s)
 		if err != nil {
 			log.Fatalf("Could not parse %q into int", s)
 		}
-		cumulative += float64(i)
+		cumulative += i
 		crabs = append(crabs, i)
 	}
-	position := int(math.Round(cumulative/float64(len(crabs))))
+	position := cumulative/len(crabs)
 	fmt.Println("position:", position)
 
 	var totalFuel int
